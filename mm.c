@@ -1,11 +1,26 @@
 /*
-This is a dynamic memory allocator that manages the computer memory       
-by creating an array of contiguous allocated and free blocks on the 
-heap.Free blocks are organized into some form of explicit data structure. 
-Note that pointers are stored within the bodies of the 
-free blocks and the heap is organized as a doubly linked free list. 
- */
+This is a dynamic memory allocator(malloclab) implemented with an 
+explicit free list to manage allocation and freeing of memory.
 
+* Block structures:
+* An explicit list uses the payload to embed pointers to the previous and next free blocks
+* within a free block. The free and allocated block organizations are shown below:
+*
+* Allocated Block          Free Block
+*  ---------               ---------
+* | HEADER  |             | HEADER  |
+*  ---------               ---------
+* |         |             |  NEXT   |
+* |         |              ---------
+* | PAYLOAD |             |  PREV   |
+* |         |              ---------
+* |         |             |         |
+*  ---------              |         |
+* | FOOTER  |              ---------
+*  ---------              | FOOTER  |
+*                          ---------
+* 
+*/
 
 #include <stdbool.h>
 #include <stdint.h>
